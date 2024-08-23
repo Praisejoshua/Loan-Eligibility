@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Prediction Form</title>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'loan.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Loan Prediction Form</h2>
+        <form method="POST" action="{{ url_for('predict') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.gender.label }}: {{ form.gender() }}
+            </div>
+            <div class="form-group">
+                {{ form.married.label }}: {{ form.married() }}
+            </div>
+            <div class="form-group">
+                {{ form.dependents.label }}: {{ form.dependents() }}
+            </div>
+            <div class="form-group">
+                {{ form.education.label }}: {{ form.education() }}
+            </div>
+            <div class="form-group">
+                {{ form.self_employed.label }}: {{ form.self_employed() }}
+            </div>
+            <div class="form-group">
+                {{ form.applicant_income.label }}: {{ form.applicant_income() }}
+            </div>
+            <div class="form-group">
+                {{ form.coapplicant_income.label }}: {{ form.coapplicant_income() }}
+            </div>
+            <div class="form-group">
+                {{ form.loan_amount.label }}: {{ form.loan_amount() }}
+            </div>
+            <div class="form-group">
+                {{ form.loan_amount_term.label }}: {{ form.loan_amount_term() }}
+            </div>
+            <div class="form-group">
+                {{ form.credit_history.label }}: {{ form.credit_history() }}
+            </div>
+            <div class="form-group">
+                {{ form.property_area.label }}: {{ form.property_area() }}
+            </div>
+            <div class="form-group">
+                {{ form.submit() }}
+            </div>
+        </form>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <ul>
+            {% for category, message in messages %}
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
